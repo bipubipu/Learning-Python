@@ -1,0 +1,20 @@
+import requests_with_caching
+import json
+
+def get_movies_from_tastedive(s):
+    baseurl = 'https://tastedive.com/api/similar'
+    parameters = {'q': s,'type': 'movies', 'limit': 5}
+    res = requests_with_caching.get(baseurl, params = parameters)
+    return res.json()
+
+def extract_movie_titles(dic):
+    return [movie['Name'] for movie in dic['Similar']['Results']]
+
+def get_related_titles(lst):
+    movies = []
+    for movie in lst:
+        titles = extract_movie_titles(get_movies_from_tastedive(movie))
+        for movie in titles:
+            if movie not in movies:
+                 movies.append(movie)
+    return movies
