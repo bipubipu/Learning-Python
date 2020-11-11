@@ -49,8 +49,7 @@ def arithmetic_arranger(problems, print_result=False):
         )
         result_str = str(result)
         result_line += " " * (problem_width - len(result_str)) + result_str + "    "
-    arranged_problems = (
-        first_line.rstrip() + "\n" + second_line.rstrip() + "\n" + dash_line.rstrip()
+    arranged_problems = "\n".join([first_line.rstrip(), second_line.rstrip(), dash_line.rstrip()]
     )
     if print_result:
         arranged_problems += "\n" + result_line.rstrip()
