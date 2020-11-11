@@ -31,7 +31,6 @@ def arithmetic_arranger(problems, print_result=False):
         max_number = max(numbers[0], numbers[1])
         if max_number > 9999:
             return "Error: Numbers cannot be more than four digits."
-        # arranged_problems += re.findall(r'\d+', problem)
 
         problem_width = len(str(max_number)) + 2
 
