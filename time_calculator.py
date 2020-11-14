@@ -1,5 +1,7 @@
 from operator import add
-def add_time(start, duration, start_day=''):
+
+
+def add_time(start, duration, start_day=None):
     DAYS = ['Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -15,14 +17,15 @@ def add_time(start, duration, start_day=''):
     days_later = final_time[0]//24
     final_time[0] %= 24
 
-
     if final_time[0] >= 12:
         start_is_AM = not start_is_AM
         if start_is_AM:
             days_later += 1
     if final_time[0] > 12:
-        final_time[0] -= 12 
+        final_time[0] -= 12
 
+    if start_is_AM and final_time[0] == 0:
+        final_time[0] = 12
     final_output = f'{final_time[0]}:{final_time[1]:02d} '
     final_output += 'AM' if start_is_AM else 'PM'
 
@@ -37,6 +40,7 @@ def add_time(start, duration, start_day=''):
         final_output += f' ({days_later} days later)'
 
     return final_output
+
 
 def time_split(time):
     time = time.split(':')
